@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="RootModule">
+    <File Path="src\Default.aspx" Url="src/Default.aspx" ReplaceContent="TRUE" />
+    <File Path="src\app\App.js" Url="src/app/App.js" ReplaceContent="TRUE" />
+    <File Path="src\app\contracts-db\contracts-db.js" Url="src/app/contracts-db/contracts-db.js" ReplaceContent="TRUE" />
+    <File Path="src\app\contracts-db\contracts-db.tpl.html" Url="src/app/contracts-db/contracts-db.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\spinner\loading-spinner.css" Url="src/common/directives/spinner/loading-spinner.css" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\spinner\loading-spinner.js" Url="src/common/directives/spinner/loading-spinner.js" ReplaceContent="TRUE" />
+    <File Path="src\css\angular-growl.min.css" Url="src/css/angular-growl.min.css" ReplaceContent="TRUE" />
+    <File Path="src\css\dataTables.bootstrap.min.css" Url="src/css/dataTables.bootstrap.min.css" ReplaceContent="TRUE" />
+    <File Path="src\css\angular-datatables.min.css" Url="src/css/angular-datatables.min.css" ReplaceContent="TRUE" />
+    <File Path="src\css\chat.css" Url="src/css/chat.css" ReplaceContent="TRUE" />
+    <File Path="src\css\App.css" Url="src/css/App.css" ReplaceContent="TRUE" />
+    <File Path="src\common\people-picker\sp-peoplepicker.min.css" Url="src/common/people-picker/sp-peoplepicker.min.css" ReplaceContent="TRUE" />
+    <File Path="src\common\people-picker\sp-peoplepicker.min.js" Url="src/common/people-picker/sp-peoplepicker.min.js" ReplaceContent="TRUE" />
+    <File Path="src\common\angular-datatables.min.js" Url="src/common/angular-datatables.min.js" ReplaceContent="TRUE" />
+    <File Path="src\common\jquery.dataTables.min.js" Url="src/common/jquery.dataTables.min.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\ng-file-model.js" Url="src/common/directives/ng-file-model.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\pagination\dirPagination.js" Url="src/common/directives/pagination/dirPagination.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\pagination\dirPagination.tpl.html" Url="src/common/directives/pagination/dirPagination.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\ui-bootstrap-dialogs.js" Url="src/common/directives/ui-bootstrap-dialogs.js" ReplaceContent="TRUE" />
+    <File Path="src\common\utilities\sp-ng-module.js" Url="src/common/utilities/sp-ng-module.js" ReplaceContent="TRUE" />
+    <File Path="src\common\utilities\utilities.js" Url="src/common/utilities/utilities.js" ReplaceContent="TRUE" />
+    <File Path="src\common\services\contracts.js" Url="src/common/services/contracts.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\add-btn\add-btn.dir.js" Url="src/common/directives/add-btn/add-btn.dir.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\add-btn\add-btn.tpl.html" Url="src/common/directives/add-btn/add-btn.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\admin-menu\admin-menu.dir.js" Url="src/common/directives/admin-menu/admin-menu.dir.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\admin-menu\admin-menu.tpl.html" Url="src/common/directives/admin-menu/admin-menu.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\back-btn\back-btn.dir.js" Url="src/common/directives/back-btn/back-btn.dir.js" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\back-btn\back-btn.tpl.html" Url="src/common/directives/back-btn/back-btn.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\common\directives\angular-growl.min.js" Url="src/common/directives/angular-growl.min.js" ReplaceContent="TRUE" />
+    <File Path="src\app\adm-countries\countries-add.tpl.html" Url="src/app/adm-countries/countries-add.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\app\adm-countries\countries-list.tpl.html" Url="src/app/adm-countries/countries-list.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\app\adm-countries\countries.js" Url="src/app/adm-countries/countries.js" ReplaceContent="TRUE" />
+    <File Path="src\app\adm-departments\departments-add.tpl.html" Url="src/app/adm-departments/departments-add.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\app\adm-departments\departments-list.tpl.html" Url="src/app/adm-departments/departments-list.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\app\adm-departments\departments.js" Url="src/app/adm-departments/departments.js" ReplaceContent="TRUE" />
+    <File Path="src\app\contract-dates\contract-dates-add.js" Url="src/app/contract-dates/contract-dates-add.js" ReplaceContent="TRUE" />
+    <File Path="src\app\contract-dates\contract-dates-add.tpl.html" Url="src/app/contract-dates/contract-dates-add.tpl.html" ReplaceContent="TRUE" />
+    <File Path="src\common\services\countries.js" Url="src/common/services/countries.js" ReplaceContent="TRUE" />
+    <File Path="src\common\services\departments.js" Url="src/common/services/departments.js" ReplaceContent="TRUE" />
+    <File Path="src\common\services\currencies.js" Url="src/common/services/currencies.js" ReplaceContent="TRUE" />
+    <File Path="src\common\services\costcenters.js" Url="src/common/services/costcenters.js" ReplaceContent="TRUE" />
+    <File Path="src\common\services\documenttypes.js" Url="src/common/services/documenttypes.js" ReplaceContent="TRUE" />
+    <File Path="src\common\services\settings.js" Url="src/common/services/settings.js" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

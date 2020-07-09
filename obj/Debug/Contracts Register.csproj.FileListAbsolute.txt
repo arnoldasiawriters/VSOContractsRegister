@@ -1,0 +1,5 @@
+C:\Users\arnold.shangala\Source\Repos\Contracts Register\bin\Debug\Contracts Register.pdb
+C:\Users\arnold.shangala\Source\Repos\Contracts Register\obj\Debug\Contracts Register.csprojAssemblyReference.cache
+C:\Users\arnold.shangala\Source\Repos\Contracts Register\obj\Debug\Contracts Register.csproj.CoreCompileInputs.cache
+C:\Users\arnold.shangala\Source\Repos\Contracts Register\obj\Debug\Contracts Register.dll
+C:\Users\arnold.shangala\Source\Repos\Contracts Register\obj\Debug\Contracts Register.pdb

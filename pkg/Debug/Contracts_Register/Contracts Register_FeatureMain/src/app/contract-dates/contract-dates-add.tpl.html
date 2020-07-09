@@ -1,0 +1,261 @@
+﻿<div class="bootstrap-iso ng-scope">
+    <div class="well well-sm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <a href="#listdashboard" class="btn btn-sm btn-success">
+                        <i class="fa fa-angle-double-left"></i>
+                        Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading pnl-heading">ADD CONTRACT INFORMATION</div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="control-label">Contract Title:</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           ng-model="ctrl.contract.title">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Contract Status:</label>
+                                    <select ng-model="ctrl.contract.status"
+                                            ng-options="x for x in ctrl.status"
+                                            class="select form-control">
+                                        <option value="" class="" selected="selected">-- Select Status --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Department:</label>
+                                    <select ng-model="ctrl.contract.department"
+                                            ng-options="x.title for x in ctrl.departments track by x.id"
+                                            class="select form-control">
+                                        <option value="" class="" selected="selected">-- Select Department --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Country:</label>
+                                    <select ng-model="ctrl.contract.department.country"
+                                            ng-options="x.title for x in ctrl.countries track by x.id"
+                                            class="select form-control">
+                                        <option value="" class="" selected="selected">-- Select Country --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Currency Name:</label>
+                                    <select ng-model="ctrl.contract.currency"
+                                            ng-options="x.title for x in ctrl.currencies track by x.id"
+                                            class="select form-control">
+                                        <option value="" class="" selected="selected">-- Select Currency --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Cost Center Code:</label>
+                                    <select ng-model="ctrl.contract.costcenter"
+                                            ng-options="x.code for x in ctrl.costcenters track by x.id"
+                                            class="select form-control">
+                                        <option value="" class="" selected="selected">-- Select Cost Center Code --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Cost Center Name:</label>
+                                    <select ng-model="ctrl.contract.costcenter"
+                                            ng-options="x.title for x in ctrl.costcenters track by x.id"
+                                            class="select form-control">
+                                        <option value="" class="" selected="selected">-- Select Cost Center Name --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Contract Value:</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           ng-model="ctrl.contract.value">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Start Date:</label>
+                                    <input class="form-control"
+                                           type="date"
+                                           ng-model="ctrl.contract.startdate">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">End Date:</label>
+                                    <input class="form-control"
+                                           type="date"
+                                           ng-model="ctrl.contract.enddate">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Contract Managers:</label>
+                                    <sp-people-picker name="contractmanagers"
+                                                      ng-model="ctrl.contract.managers"
+                                                      max-entries="5"
+                                                      allow-duplicates="false"
+                                                      show-login="false"
+                                                      show-title="true"
+                                                      min-characters="3"
+                                                      min-entries="1"
+                                                      app-web-url="ctrl.hostWebUrl" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="control-label">Supplier Name:</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           ng-model="ctrl.suppliername">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="control-label">Supplier Contact/s:</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           ng-model="ctrl.suppliercontact">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label">Action:</label>
+                                <a href="" class="btn btn-success form-control" ng-click="ctrl.addSupplier()">
+                                    <i class="fa fa-plus-circle"></i> Add Supplier
+                                </a>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-condensed table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="min-width:200px;">Supplier Name</th>
+                                <th style="min-width:200px;">Supplier Contacts</th>
+                                <th style="width:110px">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="supplier in ctrl.contract.suppliers">
+                                <td><span>{{supplier.title}}</span></td>
+                                <td><span>{{supplier.contacts}}</span></td>
+                                <td><a href="" class="btn btn-sm btn-danger" ng-click="ctrl.RemoveSupplier(supplier)">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Document Type:</label>
+                            <select ng-model="ctrl.document.type"
+                                    ng-options="x.title for x in ctrl.documenttypes track by x.id"
+                                    class="select form-control">
+                                <option value="" class="" selected="selected">-- Select Document Type --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="control-label">Document Details</label>
+                            <input class="form-control"
+                                   type="text"
+                                   ng-model="ctrl.document.details">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Attachment</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-paperclip"></i></span>
+                                <input type="file" placeholder="Attachment" class="form-control input-md file" ng-file-model="ctrl.document.attachment">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-label">Action:</label>
+                        <a href="" class="btn btn-success form-control" ng-click="ctrl.addDocument()">
+                            <i class="fa fa-plus-circle"></i> Add Attachment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-condensed table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="min-width:150px;">Document Title</th>
+                                <th style="min-width:150px;">Document Type</th>
+                                <th style="min-width:200px;">Document Description</th>
+                                <th style="width:110px">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="doc in ctrl.contract.documents">
+                                <td><span>{{doc.title}}</span></td>
+                                <td><span>{{doc.type.title}}</span></td>
+                                <td><span>{{doc.details}}</span></td>
+                                <td><a href="" class="btn btn-sm btn-danger" ng-click="ctrl.RemoveDocument(doc)">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group pull-right">
+                        <a href="" class="btn btn-success" ng-click="ctrl.addContract()">Save and close</a>
+                        <a href="#dashboard" class="btn btn-warning ">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

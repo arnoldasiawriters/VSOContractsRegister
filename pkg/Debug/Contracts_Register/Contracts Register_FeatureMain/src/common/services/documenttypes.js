@@ -10,11 +10,13 @@
         var svc = this;
         var listname = 'DocumentTypes';
         var curUserId = _spPageContextInfo.userId;
+        svc.hostWebUrl = ShptRestService.hostWebUrl;
+
         var docTypesList = null;
 
         svc.getAllItems = function () {
             var defer = $q.defer();
-            var queryParams = "$select=Id,Title";
+            var queryParams = "$select=Id,Title,Required,Step,OrderBy";
             ShptRestService
                 .getListItems(listname, queryParams)
                 .then(function (data) {
@@ -23,9 +25,12 @@
                         var doctype = {};
                         doctype.id = o.Id;
                         doctype.title = o.Title;
+                        doctype.required = o.Required;
+                        doctype.orderby = o.OrderBy;
+                        doctype.step = o.Step ? o.Step.results : [];
                         docTypesList.push(doctype);
                     });
-                    defer.resolve(_.orderBy(docTypesList, ['title'], ['asc']));
+                    defer.resolve(_.orderBy(docTypesList, ['orderby'], ['asc']));
                 })
                 .catch(function (error) {
                     defer.reject(error);
@@ -40,14 +45,17 @@
                 defer.reject("The item specified already exists in the system. Contact IT Service desk for support.");
             } else {
                 var data = {
-                    Title: doctype.title
+                    Title: doctype.title,
+                    Required: doctype.required,
+                    OrderBy: doctype.orderby,
+                    Step: { results: doctype.step }
                 };
                 ShptRestService
                     .createNewListItem(listname, data)
                     .then(function (response) {
                         doctype.id = response.ID;
                         docTypesList.push(doctype);
-                        defer.resolve(_.orderBy(docTypesList, ['title'], ['asc']));
+                        defer.resolve(_.orderBy(docTypesList, ['orderby'], ['asc']));
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -55,6 +63,43 @@
                     });
             }
             return defer.promise;
+        };
+
+        svc.UpdateItem = function (doctype) {
+            var deferEdit = $q.defer();
+            svc
+                .getAllItems()
+                .then(function (response) {
+                    var itemExists = _.some(response, function (o) {
+                        return o.id == doctype.id;
+                    });
+
+                    if (!itemExists) {
+                        deferEdit.reject("The item to be edited does not exist. Contact IT Service desk for support.");
+                    } else {
+                        var data = {
+                            Title: doctype.title,
+                            Required: doctype.required,
+                            OrderBy: doctype.orderby,
+                            Step: { results: doctype.step }
+                        };
+
+                        ShptRestService
+                            .updateListItem(listname, doctype.id, data)
+                            .then(function (response) {
+                                deferEdit.resolve(true);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                                deferEdit.reject("An error occured while adding the item. Contact IT Service desk for support.");
+                            });
+                    }
+                })
+                .catch(function (error) {
+                    deferEdit.reject("An error occured while retrieving the items. Contact IT Service desk for support.");
+                    console.log(error);
+                });
+            return deferEdit.promise;
         };
 
         svc.DeleteItem = function (id) {

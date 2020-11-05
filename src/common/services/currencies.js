@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function(){
     'use strict';
 
     angular
@@ -11,10 +11,11 @@
         var listname = 'Currencies';
         var curUserId = _spPageContextInfo.userId;
         var currenciesList = null;
+        svc.hostWebUrl = ShptRestService.hostWebUrl;
 
         svc.getAllItems = function () {
             var defer = $q.defer();
-            var queryParams = "$select=Id,Title";
+            var queryParams = "$select=Id,Title,Abbr";
             ShptRestService
                 .getListItems(listname, queryParams)
                 .then(function (data) {
@@ -23,6 +24,7 @@
                         var currency = {};
                         currency.id = o.Id;
                         currency.title = o.Title;
+                        currency.abbr = o.Abbr;
                         currenciesList.push(currency);
                     });
                     defer.resolve(_.orderBy(currenciesList, ['title'], ['asc']));
@@ -36,21 +38,18 @@
         svc.AddItem = function (currency) {
             var defer = $q.defer();
             var itemExists = _.some(currenciesList, ['title', currency.title]);
-
             if (itemExists) {
                 defer.reject("The item specified already exists in the system. Contact IT Service desk for support.");
             } else {
-
                 var data = {
-                    Title: currency.title
+                    Title: currency.title,
+                    Abbr: currency.abbr
                 };
 
                 ShptRestService
                     .createNewListItem(listname, data)
                     .then(function (response) {
-                        currency.id = response.ID;
-                        currenciesList.push(currency);
-                        defer.resolve(_.orderBy(currenciesList, ['title'], ['asc']));
+                        defer.resolve(true);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -58,6 +57,41 @@
                     });
             }
             return defer.promise;
+        };
+
+        svc.UpdateItem = function (currency) {
+            var deferEdit = $q.defer();
+            svc
+                .getAllItems()
+                .then(function (response) {
+                    var itemExists = _.some(response, function (o) {
+                        return o.id == currency.id;
+                    });
+
+                    if (!itemExists) {
+                        deferEdit.reject("The item to be edited does not exist. Contact IT Service desk for support.");
+                    } else {
+                        var data = {
+                            Title: currency.title,
+                            Abbr: currency.abbr
+                        };
+
+                        ShptRestService
+                            .updateListItem(listname, currency.id, data)
+                            .then(function (response) {
+                                deferEdit.resolve(true);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                                deferEdit.reject("An error occured while adding the item. Contact IT Service desk for support.");
+                            });
+                    }
+                })
+                .catch(function (error) {
+                    deferEdit.reject("An error occured while retrieving the items. Contact IT Service desk for support.");
+                    console.log(error);
+                });
+            return deferEdit.promise;
         };
 
         svc.DeleteItem = function (id) {
@@ -81,4 +115,4 @@
             return defer.promise;
         };
     }
-})();
+}) ();

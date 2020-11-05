@@ -11,6 +11,7 @@
         var listname = 'CostCenter';
         var curUserId = _spPageContextInfo.userId;
         var costcentersList = null;
+        svc.hostWebUrl = ShptRestService.hostWebUrl;
 
         svc.getAllItems = function () {
             var defer = $q.defer();
@@ -60,6 +61,41 @@
                     });
             }
             return defer.promise;
+        };
+
+        svc.UpdateItem = function (costcenter) {
+            var deferEdit = $q.defer();
+            svc
+                .getAllItems()
+                .then(function (response) {
+                    var itemExists = _.some(response, function (o) {
+                        return o.id == costcenter.id;
+                    });
+
+                    if (!itemExists) {
+                        deferEdit.reject("The item to be edited does not exist. Contact IT Service desk for support.");
+                    } else {
+                        var data = {
+                            Title: costcenter.title,
+                            Code: costcenter.code
+                        };
+
+                        ShptRestService
+                            .updateListItem(listname, costcenter.id, data)
+                            .then(function (response) {
+                                deferEdit.resolve(true);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                                deferEdit.reject("An error occured while adding the item. Contact IT Service desk for support.");
+                            });
+                    }
+                })
+                .catch(function (error) {
+                    deferEdit.reject("An error occured while retrieving the items. Contact IT Service desk for support.");
+                    console.log(error);
+                });
+            return deferEdit.promise;
         };
 
         svc.DeleteItem = function (id) {

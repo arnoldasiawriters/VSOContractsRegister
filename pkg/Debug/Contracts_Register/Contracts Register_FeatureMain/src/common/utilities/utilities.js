@@ -100,15 +100,13 @@ angular
         /**
           * A function that returns the shortcut links.
           */
-        utilService.getAppShortcutlinks = function (activeLinkId) {
+        utilService.getAppShortcutlinks = function (activeLinkId, hostWebUrl) {
             var links = [
-                { 'id': 1, title: 'Countries', icon: 'fa-flag', url: '#listAdminCountries', class: '' },
-                { 'id': 2, title: 'Departments', icon: 'fa-building', url: '#listAdminDepartments', class: '' },
-                { 'id': 3, title: 'Cost Centers', icon: 'fa-eur', url: '#listAdminCostCenters', class: '' },
-                { 'id': 4, title: 'Currencies', icon: 'fa-money', url: '#listAdminCurrencies', class: '' },
-                { 'id': 5, title: 'Document Types', icon: 'fa-files-o ', url: '#listAdminDocTypes', class: '' },
-                { 'id': 6, title: 'Securiy Groups', icon: 'fa-wrench', url: '#listAdminSecuriyGroups', class: '' },
-                { 'id': 7, title: 'System Settings', icon: 'fa-cogs', url: '#listAdminSettings', class: '' }];
+                { 'id': 1, title: 'Country Office/Global Teams', icon: 'fa-building', url: '#listAdminDepartments', class: '', target:'_parent' },
+                { 'id': 2, title: 'Cost Centers', icon: 'fa-eur', url: '#listAdminCostCenters', class: '', target:'_parent' },
+                { 'id': 3, title: 'Document Types', icon: 'fa-files-o ', url: '#listAdminDocTypes', class: '', target:'_parent' },
+                { 'id': 4, title: 'Currencies', icon: 'fa-wrench', url: '#listAdminCurrencies', class: '', target:'_parent' },
+                { 'id': 5, title: 'System Settings', icon: 'fa-cogs', url: '#listAdminSettings', class: '', target:'_parent' }];
 
             var activeLink = _.find(links, ['id', activeLinkId]);
             activeLink.class = "button-active";

@@ -4,11 +4,11 @@
     </div>
     <div class="col-md-6">
         <div class="pull-right">
-            <a href="#listAdminFinancialYears" class="btn btn-sm btn-info">
-                <i class="fa fa-cog"></i>
-                Contracts Insights
-            </a>
-            <a href="#listAdminCountries" class="btn btn-sm btn-danger">
+            <!--<a href="#listAdminFinancialYears" class="btn btn-sm btn-info">
+        <i class="fa fa-cog"></i>
+        Contracts Insights
+    </a>-->
+            <a href="#listAdminDepartments" class="btn btn-sm btn-danger" ng-if="ctrl.isAdmin">
                 <i class="fa fa-cog"></i>
                 Administration
             </a>
@@ -23,39 +23,17 @@
 <div class="well">
     <div class="row">
         <div class="col-md-2">
-            <div class="form-group">
-                <label class="control-label">
-                    Country:
-                </label>
-                <select ng-model="ctrl.country"
-                        ng-options="x.title for x in ctrl.countries track by x.id"
-                        class="select form-control">
-                    <option value="" class="" selected="selected">-- Select Country --</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-2">
             <label class="control-label">
-                Department:
+                Country Office/Global Team:
             </label>
             <select ng-model="ctrl.department"
                     ng-options="x.title for x in ctrl.departments track by x.id"
                     class="select form-control">
-                <option value="" class="" selected="selected">-- Select Department --</option>
+                <option value="" class="" selected="selected">--Select Country Office/Global Team--</option>
             </select>
         </div>
-        <div class="col-md-2">
-            <label class="control-label">
-                Start Date:
-            </label>
-            <input class="form-control" type="date" ng-model="ctrl.sStartDate">
-        </div>
-        <div class="col-md-2">
-            <label class="control-label">
-                End Date:
-            </label>
-            <input class="form-control" type="date" ng-model="ctrl.sEndDate">
-        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
         <div class="col-md-2">
             <label class="control-label">
                 Status:
@@ -66,6 +44,7 @@
                 <option value="" class="" selected="selected">-- Select Status --</option>
             </select>
         </div>
+        <div class="col-md-2"></div>
         <div class="col-md-2">
             <label class="control-label">
                 Action:
@@ -78,9 +57,9 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <div ng-click="ctrl.getContracts(90, 61)" class="dbSummary">
+<div class="row ten-columns">
+    <div class="col-sm-2">
+        <div ng-click="ctrl.getContracts(1,1)" class="dbSummary">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <div class="row">
@@ -88,6 +67,23 @@
                             <i class="glyphicon glyphicon-ok gi-3X"></i>
                         </div>
                         <div class="col-xs-9 text-right">
+                            <div class="huge ng-binding">{{ctrl.allcontracts}}</div>
+                            <div>All Contracts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div ng-click="ctrl.getContracts(90, 61)" class="dbSummary">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2 ">
+                            <i class="glyphicon glyphicon-repeat gi-3X"></i>
+                        </div>
+                        <div class="col-xs-10 text-right">
                             <div class="huge ng-binding">{{ctrl.expiryninetydays}}</div>
                             <div>90-61 Days To Expiry</div>
                         </div>
@@ -96,16 +92,15 @@
             </div>
         </div>
     </div>
-
-    <div class="col-md-3">
+    <div class="col-sm-2">
         <div ng-click="ctrl.getContracts(60, 31)" class="dbSummary">
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
                             <i class="glyphicon glyphicon-time gi-3X"></i>
                         </div>
-                        <div class="col-xs-9 text-right">
+                        <div class="col-xs-10 text-right">
                             <div class="huge ng-binding">{{ctrl.expirysixetydays}}</div>
                             <div>60-31 Days To Expiry</div>
                         </div>
@@ -114,16 +109,15 @@
             </div>
         </div>
     </div>
-
-    <div class="col-md-3">
-        <div ng-click="ctrl.getReachData(30, 0)" class="dbSummary">
+    <div class="col-sm-2">
+        <div ng-click="ctrl.getContracts(30, 0)" class="dbSummary">
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
                             <i class="glyphicon glyphicon-exclamation-sign gi-3X"></i>
                         </div>
-                        <div class="col-xs-9 text-right">
+                        <div class="col-xs-10 text-right">
                             <div class="huge ng-binding">{{ctrl.expirythirtydays}}</div>
                             <div>30-0 Days To Expiry</div>
                         </div>
@@ -132,9 +126,8 @@
             </div>
         </div>
     </div>
-
-    <div class="col-md-3">
-        <div ng-click="ctrl.getReachData(0)" class="dbSummary">
+    <div class="col-sm-2">
+        <div ng-click="ctrl.getContracts(0,0)" class="dbSummary">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
@@ -143,7 +136,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge ng-binding">{{ctrl.expiryexpired}}</div>
-                            <div>Expired and Active</div>
+                            <div>Expired</div>
                         </div>
                     </div>
                 </div>
@@ -161,29 +154,38 @@
         <table datatable="ng" class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th style="min-width:60px;">Country</th>
-                    <th style="min-width:100px;">Department</th>
-                    <th>Contract Title</th>
-                    <th>Supplier Name</th>
-                    <th style="min-width:40px;">Currency</th>
-                    <th style="min-width:60px;">Value</th>
+                    <th style="min-width:60px;">Country Office/Global Team:</th>
+                    <th style="min-width:100px;">Contract Title</th>
+                    <th style="min-width:100px;">Supplier Name</th>
+                    <th style="min-width:110px;">Value</th>
                     <th style="min-width:80px;">Start Date</th>
                     <th style="min-width:80px;">End Date</th>
+                    <th style="min-width:80px;">Contract Manager</th>
                     <th>Status</th>
+                    <th>End Date if Extended</th>
                     <th style="min-width: 60px;"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="contract in ctrl.contracts">
-                    <td><span>{{contract.country.title}}</span></td>
                     <td><span>{{contract.department.title}}</span></td>
                     <td><span>{{contract.title}}</span></td>
-                    <td><span>{{contract.supplier}}</span></td>
-                    <td><span>{{contract.currency}}</span></td>
-                    <td><span>{{contract.value}}</span></td>
-                    <td><span>{{contract.startdate}}</span></td>
-                    <td><span>{{contract.enddate}}</span></td>
+                    <td>
+                        <span ng-repeat="supplier in contract.suppliers">
+                            {{supplier.title}}<font ng-show="!$last">,</font>
+                        </span>
+                    </td>
+                    <td><span>{{contract.currency.abbr+" "+(contract.value | number : fractionSize)}}</span></td>
+                    <td><span>{{contract.startdate | date: 'dd/MM/yyyy' : 'europe/london'}}</span></td>
+                    <td><span>{{contract.enddate | date: 'dd/MM/yyyy' : 'europe/london'}}</span></td>
+                    <td>
+                        <span ng-repeat="manager in contract.managers">
+                            {{manager.title}}<font ng-show="!$last">,</font>
+                        </span>
+                    </td>
                     <td><span>{{contract.status}}</span></td>
+                    <!--<td><span>{{contract.renewals[0].enddate > 0 ? "Extended": "Original"}}</span></td>-->
+                    <td><span>{{contract.renewals.length > 0 ? (contract.renewals[0].enddate | date: 'dd/MM/yyyy' : 'europe/london') : "N/A"}}</span></td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-xs btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
@@ -191,10 +193,12 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="">Details</a></li>
-                                <li><a href="">Edit</a></li>
-                                <li><a href="">Delete</a></li>
-                                <li><a href="">Close</a></li>
+                                <li><a href="#detailsContract/{{ctrl.department.id}}/{{ctrl.status}}/{{contract.id}}">View Details</a></li>
+                                <li><a href="#renewContract/{{ctrl.department.id}}/{{ctrl.status}}/{{contract.id}}" ng-if="contract.curusermanager || contract.curusereditor">Extend/Edit</a></li>
+                                <!--<li><a href="">Details</a></li>
+                <li><a href="">Edit</a></li>-->
+                                <!--<li><a href="">Delete</a></li>
+                <li><a href="">Archive</a></li>-->
                             </ul>
                         </div>
                     </td>
@@ -202,15 +206,15 @@
             </tbody>
             <thead>
                 <tr>
-                    <th style="min-width:60px;">Country</th>
-                    <th style="min-width:100px;">Department</th>
-                    <th>Contract Title</th>
-                    <th>Supplier Name</th>
-                    <th style="min-width:40px;">Currency</th>
+                    <th style="min-width:60px;">Country Office/Global Team:</th>
+                    <th style="min-width:100px;">Contract Title</th>
+                    <th style="min-width:100px;">Supplier Name</th>
                     <th style="min-width:60px;">Value</th>
                     <th style="min-width:80px;">Start Date</th>
                     <th style="min-width:80px;">End Date</th>
+                    <th style="min-width:80px;">Contract Manager</th>
                     <th>Status</th>
+                    <th>End Date if Extended</th>
                     <th style="min-width: 60px;"></th>
                 </tr>
             </thead>

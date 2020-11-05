@@ -150,3 +150,28 @@ input[type=number] {
     height: 25px !important;
     font-size: 13px !important;
 }
+
+.asteriskField {
+    color: red;
+}
+
+.contract-table {
+    border: 1px solid #AD0075;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* 5 same size columns */
+@media (min-width: 768px) {
+    .ten-columns > .col-sm-2 {
+        width: 20%;
+    }
+}
+
+hr {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    border: 0 !important;
+    border-top: 1px solid #eee !important;
+}

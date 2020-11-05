@@ -15,12 +15,13 @@
 
      <!-- Add your CSS styles to the following file -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
     <link href="common/directives/spinner/loading-spinner.css" rel="stylesheet"/>
     <link href="css/angular-growl.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="css/angular-datatables.min.css" rel="stylesheet" />
+    <%--<link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap.min.css" rel="stylesheet" />--%>
+    <%--<link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />--%>    
     <link href="css/chat.css" rel="stylesheet"/>
     <link href="css/App.css" rel="Stylesheet"/>  
     <link href="common/people-picker/sp-peoplepicker.min.css" rel="stylesheet" />
@@ -30,6 +31,7 @@
     <script type="text/javascript" src="common/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.4.12/angular.js"></script>
     <script type="text/javascript" src="common/angular-datatables.min.js"></script>
+
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
@@ -44,11 +46,14 @@
 
       <!--Services-->
     <script type="text/javascript" src="common/services/contracts.js"></script>
-    <script type="text/javascript" src="common/services/countries.js"></script>
     <script type="text/javascript" src="common/services/costcenters.js"></script>
-    <script type="text/javascript" src="common/services/currencies.js"></script>
     <script type="text/javascript" src="common/services/departments.js"></script>
     <script type="text/javascript" src="common/services/documenttypes.js"></script>
+    <script type="text/javascript" src="common/services/currencies.js"></script>
+    <script type="text/javascript" src="common/services/contract-suppliers.js"></script>
+    <script type="text/javascript" src="common/services/contract-documents.js"></script>
+    <script type="text/javascript" src="common/services/contract-renewals.js"></script>
+    <script type="text/javascript" src="common/services/settings.js"></script>
 
       <!--Directives-->
     <script type="text/javascript" src="common/directives/ng-file-model.js"></script>
@@ -57,11 +62,19 @@
     <script type="text/javascript" src="common/directives/add-btn/add-btn.dir.js"></script>
     <script type="text/javascript" src="common/directives/back-btn/back-btn.dir.js"></script>
     <script type="text/javascript" src="common/people-picker/sp-peoplepicker.min.js"></script>
+    <script type="text/javascript" src="common/directives/contract-details/contract-details.dir.js"></script>
+    <script type="text/javascript" src="common/directives/add-document/add-document.dir.js"></script>
+    <script type="text/javascript" src="common/directives/add-supplier/add-supplier.dir.js"></script>
 
      <!--Controllers-->
-    <script type="text/javascript" src="app/contracts-db/contracts-db.js"></script>
+    <script type="text/javascript" src="app/adm-costcenters/costcenters.js"></script>
+    <script type="text/javascript" src="app/adm-departments/departments.js"></script>
+    <script type="text/javascript" src="app/adm-doctypes/doctypes.js"></script>
+    <script type="text/javascript" src="app/adm-currencies/currencies.js"></script>
     <script type="text/javascript" src="app/contract-dates/contract-dates-add.js"></script>
-    <script type="text/javascript" src="app/adm-countries/countries.js"></script>
+    <script type="text/javascript" src="app/adm-settings/settings.js"></script>
+    <script type="text/javascript" src="app/contracts-db/contracts-db.js"></script>   
+
 
     <script type="text/javascript" src="app/App.js"></script>
 </asp:Content>

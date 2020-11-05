@@ -51,6 +51,9 @@
     <Content Include="src\app\adm-costcenters\costcenters-add.tpl.html" />
     <Content Include="src\app\adm-costcenters\costcenters-list.tpl.html" />
     <Content Include="src\app\adm-costcenters\costcenters.js" />
+    <Content Include="src\app\adm-departments\departments-add.tpl.html" />
+    <Content Include="src\app\adm-departments\departments-list.tpl.html" />
+    <Content Include="src\app\adm-departments\departments.js" />
     <Content Include="src\app\adm-currencies\currencies-add.tpl.html" />
     <Content Include="src\app\adm-currencies\currencies-list.tpl.html" />
     <Content Include="src\app\adm-currencies\currencies.js" />
@@ -60,15 +63,8 @@
     <Content Include="src\app\adm-securiygroups\securiygroups-add.tpl.html" />
     <Content Include="src\app\adm-securiygroups\securiygroups-list.tpl.html" />
     <Content Include="src\app\adm-securiygroups\securiygroups.js" />
-    <Content Include="src\app\adm-systemsettings\systemsettings-add.tpl.html" />
-    <Content Include="src\app\adm-systemsettings\systemsettings-list.tpl.html" />
-    <Content Include="src\app\adm-systemsettings\systemsettings.js" />
-    <Content Include="src\app\adm-departments\departments-add.tpl.html" />
-    <Content Include="src\app\adm-departments\departments-list.tpl.html" />
-    <Content Include="src\app\adm-departments\departments.js" />
-    <Content Include="src\app\adm-countries\countries-add.tpl.html" />
-    <Content Include="src\app\adm-countries\countries-list.tpl.html" />
-    <Content Include="src\app\adm-countries\countries.js" />
+    <Content Include="src\app\adm-settings\settings-list.tpl.html" />
+    <Content Include="src\app\adm-settings\settings.js" />
     <Content Include="src\app\App.js" />
     <Content Include="src\app\contract-dates\contract-dates-add.js" />
     <Content Include="src\app\contract-dates\contract-dates-add.tpl.html" />
@@ -77,11 +73,17 @@
     <Content Include="src\common\angular-datatables.min.js" />
     <Content Include="src\common\directives\add-btn\add-btn.dir.js" />
     <Content Include="src\common\directives\add-btn\add-btn.tpl.html" />
+    <Content Include="src\common\directives\add-document\add-document.dir.js" />
+    <Content Include="src\common\directives\add-document\add-document.tpl.html" />
     <Content Include="src\common\directives\admin-menu\admin-menu.dir.js" />
     <Content Include="src\common\directives\admin-menu\admin-menu.tpl.html" />
     <Content Include="src\common\directives\angular-growl.min.js" />
     <Content Include="src\common\directives\back-btn\back-btn.dir.js" />
     <Content Include="src\common\directives\back-btn\back-btn.tpl.html" />
+    <Content Include="src\common\directives\add-supplier\add-supplier.dir.js" />
+    <Content Include="src\common\directives\add-supplier\add-supplier.tpl.html" />
+    <Content Include="src\common\directives\contract-details\contract-details.dir.js" />
+    <Content Include="src\common\directives\contract-details\contract-details.tpl.html" />
     <Content Include="src\common\directives\ng-file-model.js" />
     <Content Include="src\common\directives\pagination\dirPagination.js" />
     <Content Include="src\common\directives\pagination\dirPagination.tpl.html" />
@@ -91,12 +93,14 @@
     <Content Include="src\common\jquery.dataTables.min.js" />
     <Content Include="src\common\people-picker\sp-peoplepicker.min.css" />
     <Content Include="src\common\people-picker\sp-peoplepicker.min.js" />
+    <Content Include="src\common\services\contract-renewals.js" />
+    <Content Include="src\common\services\contract-documents.js" />
+    <Content Include="src\common\services\contract-suppliers.js" />
     <Content Include="src\common\services\contracts.js" />
-    <Content Include="src\common\services\departments.js" />
     <Content Include="src\common\services\currencies.js" />
+    <Content Include="src\common\services\departments.js" />
     <Content Include="src\common\services\costcenters.js" />
     <Content Include="src\common\services\documenttypes.js" />
-    <Content Include="src\common\services\countries.js" />
     <Content Include="src\common\services\settings.js" />
     <Content Include="src\common\utilities\sp-ng-module.js" />
     <Content Include="src\common\utilities\utilities.js" />
@@ -105,7 +109,11 @@
     <Content Include="src\css\App.css" />
     <Content Include="src\css\chat.css" />
     <Content Include="src\css\dataTables.bootstrap.min.css" />
+    <Content Include="src\css\jquery.dataTables.min.css" />
     <Content Include="src\Default.aspx" />
+    <Content Include="src\images\sort_asc.png" />
+    <Content Include="src\images\sort_both.png" />
+    <Content Include="src\images\sort_desc.png" />
     <None Include="packages.config" />
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{866b1475-dbb9-43e2-b0df-0089c1612bc7}</SharePointProjectItemId>
@@ -159,9 +167,7 @@
       <SubType>Designer</SubType>
     </AppManifestFile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\images\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

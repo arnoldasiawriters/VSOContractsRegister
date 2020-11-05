@@ -1,5 +1,5 @@
 ﻿<div class="bootstrap-iso ng-scope">
-    <back-btn title="Back to Countries List" link="listAdminCountries"></back-btn>
+    <back-btn title="Back to Countries List" link="listAdminDepartments"></back-btn>
     <div class="row">
         <div class="col-md-3">
             <admin-menu menu-items="ctrl.links"></admin-menu>
@@ -7,15 +7,16 @@
         <div class="col-md-9">
             <div class="admin-body">
                 <div class="panel panel-info">
-                    <div class="panel-heading pnl-heading">ADD COUNTRY INFORMATION</div>
+                    <div ng-if="ctrl.action == 'add'" class="panel-heading pnl-heading">ADD COUNTRY OFFICE/GLOBAL TEAM INFORMATION</div>
+                    <div ng-if="ctrl.action == 'edit'" class="panel-heading pnl-heading">EDIT COUNTRY OFFICE/GLOBAL TEAM INFORMATION</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Country Name:</label>
+                                    <label class="control-label">Country Office/Global Team Name: <span class="asteriskField">*</span></label>
                                     <input class="form-control"
                                            type="text"
-                                           ng-model="ctrl.country.title"
+                                           ng-model="ctrl.department.title"
                                            ng-required="true">
                                 </div>
                             </div>
@@ -25,9 +26,9 @@
                     <div class="panel-footer clearfix">
                         <div class="form-group pull-right">
                             <a href="" class="btn btn-success" ng-click="ctrl.AddRecord()">
-                                <i class="fa fa-save"></i> Add Record
+                                <i class="fa fa-save"></i> {{  ctrl.action == 'edit' ? 'Update': 'Add' }} Record
                             </a>
-                            <a href="#listAdminCountries" class="btn btn-warning ">
+                            <a href="#listAdminDepartments" class="btn btn-warning ">
                                 <i class="fa fa-cut"></i> Cancel
                             </a>
                         </div>

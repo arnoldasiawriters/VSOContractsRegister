@@ -2,13 +2,14 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SharePointSiteUrl>https://vsointernational.sharepoint.com/sites/develop-addins/contracts-register-dev/</SharePointSiteUrl>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{C1CDDADD-2546-481F-9697-4EA41081F2FC}">
         <ProjectStore>
-          <AppInstancePackageModifiedTime>2020-07-09T19:32:05.1132569Z</AppInstancePackageModifiedTime>
-          <AppInstanceId>51c87401-c82a-4a70-a3a1-c7ce29a93142</AppInstanceId>
+          <AppInstancePackageModifiedTime>2020-11-05T13:08:24.8871776Z</AppInstancePackageModifiedTime>
+          <AppInstanceId>1782f3b6-6c00-4165-b8a5-64ae3365ef15</AppInstanceId>
         </ProjectStore>
       </FlavorProperties>
     </VisualStudio>

@@ -11,10 +11,17 @@
         var listname = 'Department';
         var curUserId = _spPageContextInfo.userId;
         var departmentsList = null;
+        svc.hostWebUrl = ShptRestService.hostWebUrl;
 
-        svc.getAllItems = function () {
+        svc.getAllItems = function (deptid) {
             var defer = $q.defer();
-            var queryParams = "$select=Id,Title";
+            var queryParams = "";
+            if (deptid) {
+                queryParams = "$select=Id,Title,Managers/Id,Managers/Title&$expand=Managers&$filter=Id eq " + parseInt(deptid);
+            } else {                
+                queryParams = "$select=Id,Title,Managers/Id,Managers/Title&$expand=Managers";
+            }
+
             ShptRestService
                 .getListItems(listname, queryParams)
                 .then(function (data) {
@@ -23,6 +30,10 @@
                         var dept = {};
                         dept.id = o.Id;
                         dept.title = o.Title;
+                        dept.managers = [];
+                        _.forEach(o.Managers.results, function (m) {
+                            dept.managers.push({ id: m.Id, title: m.Title });
+                        });
                         departmentsList.push(dept);
                     });
                     defer.resolve(_.orderBy(departmentsList, ['title'], ['asc']));
@@ -31,6 +42,21 @@
                     defer.reject(error);
                 });
             return defer.promise;
+        };
+
+        svc.currentUserManager = function (deptid) {
+            var deferUserMng = $q.defer();
+            if (deptid) {
+                svc
+                    .getAllItems(deptid)
+                    .then(function (dept) {
+                        deferUserMng.resolve(_.some(dept[0].managers, ['id', parseInt(curUserId)]));
+                    })
+                    .catch(function (error) {
+                        deferUserMng.reject(error);
+                    });
+            }
+            return deferUserMng.promise;
         };
 
         svc.AddItem = function (dept) {
@@ -48,9 +74,7 @@
                 ShptRestService
                     .createNewListItem(listname, data)
                     .then(function (response) {
-                        dept.id = response.ID;
-                        departmentsList.push(dept);
-                        defer.resolve(_.orderBy(departmentsList, ['title'], ['asc']));
+                        defer.resolve(true);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -58,6 +82,40 @@
                     });
             }
             return defer.promise;
+        };
+
+        svc.UpdateItem = function (dept) {
+            var deferEdit = $q.defer();
+            svc
+                .getAllItems()
+                .then(function (response) {
+                    var itemExists = _.some(response, function (o) {
+                        return o.id == dept.id;
+                    });
+
+                    if (!itemExists) {
+                        deferEdit.reject("The item to be edited does not exist. Contact IT Service desk for support.");
+                    } else {
+                        var data = {
+                            Title: dept.title
+                        };
+
+                        ShptRestService
+                            .updateListItem(listname, dept.id, data)
+                            .then(function (response) {
+                                deferEdit.resolve(true);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                                deferEdit.reject("An error occured while adding the item. Contact IT Service desk for support.");
+                            });
+                    }
+                })
+                .catch(function (error) {
+                    deferEdit.reject("An error occured while retrieving the items. Contact IT Service desk for support.");
+                    console.log(error);
+                });
+            return deferEdit.promise;
         };
 
         svc.DeleteItem = function (id) {

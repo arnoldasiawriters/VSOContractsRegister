@@ -8,9 +8,10 @@
     SettingsSvc.$inject = ['$q', 'ShptRestService'];
     function SettingsSvc($q, ShptRestService) {
         var svc = this;
-        var listname = 'ReachDataSettings';
+        var listname = 'SystemSettings';
         svc.userid = _spPageContextInfo.userId;
         var settingsList = null;
+        svc.hostWebUrl = ShptRestService.hostWebUrl;
 
         svc.getSettings = function () {
             var defer = $q.defer();
@@ -62,7 +63,7 @@
             var deferSettings = $q.defer();
             var qParams = "$select=Id";
             ShptRestService
-                .getGroupMembers("Scale and Reach Tool Admins", qParams)
+                .getGroupMembers("Contracts Register Admins", qParams)
                 .then(function (users) {
                     var userAdmin = _.some(users.results, ['Id', svc.userid]);
                     deferSettings.resolve(userAdmin);         

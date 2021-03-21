@@ -55,19 +55,19 @@
             var curDate = new Date();
             ctrl.allcontracts = contracts.length;
             ctrl.expiryninetydays = _.filter(contracts, function (c) {
-                var days = ((c.enddate - curDate) / (1000 * 60 * 60 * 24));
+                var days = Math.round((c.enddate - curDate) / (1000 * 60 * 60 * 24));
                 return days >= 61 && days <= 90;
             }).length;
             ctrl.expirysixetydays = _.filter(contracts, function (c) {
-                var days = ((c.enddate - curDate) / (1000 * 60 * 60 * 24));
+                var days = Math.round((c.enddate - curDate) / (1000 * 60 * 60 * 24));
                 return days >= 31 && days <= 60;
             }).length;
             ctrl.expirythirtydays = _.filter(contracts, function (c) {
-                var days = ((c.enddate - curDate) / (1000 * 60 * 60 * 24));
+                var days = Math.round((c.enddate - curDate) / (1000 * 60 * 60 * 24));
                 return days >= 0 && days <= 30;
             }).length;
             ctrl.expiryexpired = _.filter(contracts, function (c) {
-                var days = ((c.enddate - curDate) / (1000 * 60 * 60 * 24));
+                var days = Math.round((c.enddate - curDate) / (1000 * 60 * 60 * 24));
                 return days < 0;
             }).length;
         }
@@ -98,7 +98,7 @@
                 ctrl.contracts = ctrl.filterContracts;
             } else {
                 ctrl.contracts = _.filter(ctrl.contracts, function (c) {
-                    var days = ((c.enddate - curDate) / (1000 * 60 * 60 * 24));
+                    var days = Math.round((c.enddate - curDate) / (1000 * 60 * 60 * 24));
                     if (min == 0 && max == 0) {
                         return days <= min;
                     } else {

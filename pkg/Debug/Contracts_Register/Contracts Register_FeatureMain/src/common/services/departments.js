@@ -17,9 +17,9 @@
             var defer = $q.defer();
             var queryParams = "";
             if (deptid) {
-                queryParams = "$select=Id,Title,Managers/Id,Managers/Title&$expand=Managers&$filter=Id eq " + parseInt(deptid);
+                queryParams = "$select=Id,Title,Managers/Id,Managers/Title,OrderBy&$expand=Managers&$filter=Id eq " + parseInt(deptid);
             } else {                
-                queryParams = "$select=Id,Title,Managers/Id,Managers/Title&$expand=Managers";
+                queryParams = "$select=Id,Title,Managers/Id,Managers/Title,OrderBy&$expand=Managers";
             }
 
             ShptRestService
@@ -29,14 +29,15 @@
                     _.forEach(data.results, function (o) {
                         var dept = {};
                         dept.id = o.Id;
-                        dept.title = o.Title;
+                        dept.title = o.Title;                       
                         dept.managers = [];
                         _.forEach(o.Managers.results, function (m) {
                             dept.managers.push({ id: m.Id, title: m.Title });
                         });
+                        dept.orderby = o.OrderBy;
                         departmentsList.push(dept);
                     });
-                    defer.resolve(_.orderBy(departmentsList, ['title'], ['asc']));
+                    defer.resolve(_.orderBy(departmentsList, ['orderby'], ['asc']));
                 })
                 .catch(function (error) {
                     defer.reject(error);

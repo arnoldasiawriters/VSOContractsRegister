@@ -15,7 +15,7 @@
 
         svc.getAllItems = function () {
             var defer = $q.defer();
-            var queryParams = "$select=Id,Title,StartDate,EndDate,Value,ContractStatus,Department/Id,Department/Title,CostCenter/Id,CostCenter/Title,CostCenter/Code,Comments," +
+            var queryParams = "$select=Id,Title,StartDate,EndDate,Value,ContractStatus,Department/Id,Department/Title,CostCenter/Id,CostCenter/Title,CostCenter/Code,Comments,ProcDocsLink," +
                 "Currency/Id,Currency/Title,Currency/Abbr,ContractManagers/Id,ContractManagers/Title,ContractManagers/Name,ContractTerminationNoticePeriod,ContractType,ExtentionMonths,ExtentionsPossible,ExtentionValue" +
                 "&$expand=Department,CostCenter,ContractManagers,Currency";
             ShptRestService
@@ -39,6 +39,7 @@
                         contract.costcenter = _.isNil(o.CostCenter) ? "" : { id: o.CostCenter.Id, title: o.CostCenter.Title, code: o.CostCenter.Code };
                         contract.currency = _.isNil(o.Currency) ? "" : { id: o.Currency.Id, title: o.Currency.Title, abbr: o.Currency.Abbr };
                         contract.comments = o.Comments;
+                        contract.procdocslink = o.ProcDocsLink;
                         contract.noticeperiod = o.ContractTerminationNoticePeriod;
                         contract.extentionmonths = o.ExtentionMonths;
                         contract.extentionspossible = o.ExtentionsPossible;
@@ -221,6 +222,7 @@
                                     CostCenterId: contract.costcenter.id,
                                     CurrencyId: contract.currency.id,
                                     Comments: contract.comments,
+                                    ProcDocsLink: contract.procdocslink,
                                     ContractTerminationNoticePeriod: contract.noticeperiod,
                                     ExtentionMonths: contract.extentionmonths,
                                     ExtentionsPossible: contract.extentionspossible,
@@ -303,6 +305,7 @@
                             CostCenterId: contract.costcenter.id,
                             CurrencyId: contract.currency.id,
                             Comments: contract.comments,
+                            ProcDocsLink: contract.procdocslink,
                             ContractTerminationNoticePeriod: contract.noticeperiod,
                             ExtentionMonths: contract.extentionmonths,
                             ExtentionsPossible: contract.extentionspossible,

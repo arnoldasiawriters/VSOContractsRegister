@@ -40,7 +40,7 @@
                 ctrl.settings = results[4];
 
                 ctrl.statuses = ["Active", "Expired"]
-                ctrl.types = ["Contract", "Framework Agreement", "Lease"];
+                ctrl.types = ["Contract", "Framework Agreement", "Property Lease"];
                 if ($routeParams.id) {
                     ctrl.contract = results[5];
                 } else {
@@ -68,6 +68,14 @@
             } else if (!ctrl.supplieremailphone) {
                 $dialogAlert("Kindly provide the supplier email and phone details.", "Missing Details");
                 return;
+            } else if (!ctrl.salesforceid) {
+                $dialogAlert("Kindly provide the supplier salesforce Id details.", "Missing Details");
+                return;
+            }
+
+            if (ctrl.salesforceid.substr(0, 3).toLocaleLowerCase() != "per" && ctrl.salesforceid.substr(0, 3).toLocaleLowerCase() != "org") {
+                $dialogAlert("Wrong saleforce id provided. Salesforce is in the following format: 'ORG­­­­xxxxxxx'. Where the supplier is an individual consultant, the format may be 'PERxxxxxxx'", "Missing Details");
+                return;
             }
 
             var itemExists = _.some(ctrl.contract.suppliers, function (o) {
@@ -84,6 +92,7 @@
             supplier.address = ctrl.supplieraddress;
             supplier.emailphone = ctrl.supplieremailphone;
             supplier.website = ctrl.website;
+            supplier.salesforceid = ctrl.salesforceid;
 
             if (ctrl.action == "add") {
                 ctrl.contract.suppliers.push(supplier);
@@ -92,6 +101,7 @@
                 ctrl.supplieraddress = "";
                 ctrl.supplieremailphone = "";
                 ctrl.website = "";
+                ctrl.salesforceid = "";
             } else {
                 var supps = [];
                 supps.push(supplier);
@@ -110,6 +120,7 @@
                                         ctrl.supplieraddress = "";
                                         ctrl.supplieremailphone = "";
                                         ctrl.website = "";
+                                        ctrl.salesforceid = "";
                                         growl.success('Supplier added to the contract successfully!');
                                     })
                                     .catch(function (error) {
@@ -242,8 +253,6 @@
                 });
         };
 
-
-
         ctrl.addContract = function () {
             if (!ctrl.contract.title) {
                 $dialogAlert("Kindly provide the contract title.", "Missing Details");
@@ -279,16 +288,21 @@
             }
 
             if ((_.find(ctrl.settings, ['code', 'SR001'])).value == "No" && ctrl.contract.suppliers.length <= 0) {
-                $dialogAlert("Please enter supplier details.", "Missing Details");
+                $dialogAlert("Kindly enter supplier details.", "Missing Details");
                 return;
             }
 
             if ((_.find(ctrl.settings, ['code', 'SR002'])).value == "No" && ctrl.contract.documents.length <= 0) {
-                $dialogAlert("Please choose a file to attach in the CONTRACT DOCUMENTS section and click Add Attachments.", "Missing Details");
+                $dialogAlert("Kindly choose a file to attach in the CONTRACT DOCUMENTS section and click Add Attachments.", "Missing Details");
                 return;
             }
 
-            var missingDocs = checkRequiredDocumentTypes("New");
+            if ((_.find(ctrl.settings, ['code', 'SR003'])).value == "No" && !ctrl.contract.procdocslink) {
+                $dialogAlert("Kindly provide the link to the procurement file/s on a SharePoint team site.", "Missing Details");
+                return;
+            }
+
+            var missingDocs = checkRequiredDocumentTypes("New", ctrl.contract.type);
             if (missingDocs.length > 0) {
                 $dialogAlert("Kindly ensure you attach document type/s: [" + missingDocs.join() + "] on the contract documents section before adding the contract.", "Missing Details");
                 return;
@@ -329,7 +343,7 @@
                 return;
             }
 
-            var missingDocs = checkRequiredDocumentTypes("Extension");
+            var missingDocs = checkRequiredDocumentTypes("Extension", ctrl.contract.type);
             if (missingDocs.length > 0) {
                 $dialogAlert("Kindly ensure you attach document type/s: [" + missingDocs.join() + "] on the contract documents section before adding the contract extension.", "Missing Details");
                 return;
@@ -410,7 +424,22 @@
                 return;
             }
 
-            var missingDocs = checkRequiredDocumentTypes("New");
+            //if ((_.find(ctrl.settings, ['code', 'SR001'])).value == "No" && ctrl.contract.suppliers.length <= 0) {
+            //    $dialogAlert("Kindly enter supplier details.", "Missing Details");
+            //    return;
+            //}
+
+            //if ((_.find(ctrl.settings, ['code', 'SR002'])).value == "No" && ctrl.contract.documents.length <= 0) {
+            //    $dialogAlert("Kindly choose a file to attach in the CONTRACT DOCUMENTS section and click Add Attachments.", "Missing Details");
+            //    return;
+            //}
+
+            //if ((_.find(ctrl.settings, ['code', 'SR003'])).value == "No" && !ctrl.contract.procdocslink) {
+            //    $dialogAlert("Kindly provide the link to the procurement file/s on a SharePoint team site.", "Missing Details");
+            //    return;
+            //}
+
+            var missingDocs = checkRequiredDocumentTypes("New", ctrl.contract.type);
             if (missingDocs.length > 0) {
                 $dialogAlert("Kindly ensure you attach document type/s: [" + missingDocs.join() + "] on the contract documents section before updating the contract details.", "Missing Details");
                 return;
@@ -465,10 +494,10 @@
                 });
         };
 
-        function checkRequiredDocumentTypes(step) {
+        function checkRequiredDocumentTypes(step, agreementtype) {
             var missingDocs = [];
             _.forEach(ctrl.documenttypes, function (dcts) {
-                if (dcts.required && _.includes(dcts.step, step)) {
+                if (dcts.required && _.includes(dcts.step, step) && _.includes(dcts.agreementtype, agreementtype)) {
                     var exists = false;
                     _.forEach(ctrl.contract.documents, function (dcs) {
                         if (dcs.type.id == dcts.id) {

@@ -38,7 +38,7 @@
                     defer.resolve(_.orderBy(contractDocumentsList, ['uploaddate'], ['desc']));
                 })
                 .catch(function (error) {
-                    defer.reject("An error occured while getting the contract suppliers. Contact IT Service desk for support.");
+                    defer.reject("An error occured while getting the contract documents. Contact IT Service desk for support.");
                     console.log(error);
                 });
             return defer.promise;

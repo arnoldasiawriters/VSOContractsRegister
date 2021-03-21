@@ -13,6 +13,7 @@
         ctrl.links = UtilService.getAppShortcutlinks(3, docTypesSvc.hostWebUrl);
         ctrl.doctype.required = false;
         ctrl.step = {};
+        ctrl.agreementtype = {};
         ctrl.doctypeId = $routeParams.id;
 
         if (ctrl.action == 'list') {
@@ -31,6 +32,10 @@
                         return c.id == ctrl.doctypeId;
                     });
 
+                    ctrl.agreementtype.contract = false;
+                    ctrl.agreementtype.frameworkagreement = false;
+                    ctrl.agreementtype.propertylease = false;
+
                     ctrl.step.new = false;
                     ctrl.step.extension = false;
 
@@ -39,6 +44,16 @@
                     }
                     if (_.includes(ctrl.doctype.step, "Extension")) {
                         ctrl.step.extension = true;
+                    }
+
+                    if (_.includes(ctrl.doctype.agreementtype, "Contract")) {
+                        ctrl.agreementtype.contract = true;
+                    }
+                    if (_.includes(ctrl.doctype.agreementtype, "Framework Agreement")) {
+                        ctrl.agreementtype.frameworkagreement = true;
+                    }
+                    if (_.includes(ctrl.doctype.agreementtype, "Property Lease")) {
+                        ctrl.agreementtype.propertylease = true;
                     }
                 }                
             })
@@ -59,12 +74,24 @@
                 .then(function () {
                     spinnerService.show('spinner1');
                     ctrl.doctype.step = [];
+                    ctrl.doctype.agreementtype = [];
                     if (ctrl.step.new) {
                         ctrl.doctype.step.push("New");
                     }
                     if (ctrl.step.extension) {
                         ctrl.doctype.step.push("Extension");
                     }
+
+                    if (ctrl.agreementtype.contract) {
+                        ctrl.doctype.agreementtype.push("Contract");
+                    }
+                    if (ctrl.agreementtype.frameworkagreement) {
+                        ctrl.doctype.agreementtype.push("Framework Agreement");
+                    }
+                    if (ctrl.agreementtype.propertylease) {
+                        ctrl.doctype.agreementtype.push("Property Lease");
+                    }
+
                     var updateProms = [];
                     if (ctrl.action == 'edit') {
                         updateProms.push(docTypesSvc.UpdateItem(ctrl.doctype));

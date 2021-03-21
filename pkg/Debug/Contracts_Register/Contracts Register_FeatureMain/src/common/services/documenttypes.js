@@ -16,7 +16,7 @@
 
         svc.getAllItems = function () {
             var defer = $q.defer();
-            var queryParams = "$select=Id,Title,Required,Step,OrderBy";
+            var queryParams = "$select=Id,Title,Required,Step,OrderBy,AgreementType";
             ShptRestService
                 .getListItems(listname, queryParams)
                 .then(function (data) {
@@ -28,6 +28,7 @@
                         doctype.required = o.Required;
                         doctype.orderby = o.OrderBy;
                         doctype.step = o.Step ? o.Step.results : [];
+                        doctype.agreementtype = o.AgreementType ? o.AgreementType.results : [];
                         docTypesList.push(doctype);
                     });
                     defer.resolve(_.orderBy(docTypesList, ['orderby'], ['asc']));
@@ -48,8 +49,10 @@
                     Title: doctype.title,
                     Required: doctype.required,
                     OrderBy: doctype.orderby,
-                    Step: { results: doctype.step }
+                    Step: { results: doctype.step },
+                    AgreementType: { results: doctype.agreementtype }
                 };
+
                 ShptRestService
                     .createNewListItem(listname, data)
                     .then(function (response) {
@@ -81,7 +84,8 @@
                             Title: doctype.title,
                             Required: doctype.required,
                             OrderBy: doctype.orderby,
-                            Step: { results: doctype.step }
+                            Step: { results: doctype.step },
+                            AgreementType: { results: doctype.agreementtype }
                         };
 
                         ShptRestService

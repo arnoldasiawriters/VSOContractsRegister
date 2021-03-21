@@ -4,7 +4,7 @@
     angular
         .module('app', ['ngRoute', 'ngAnimate', 'directives.dirPagination', 'ui.bootstrap', 'ui.bootstrap.dialogs', 'selectFile', 'services.utilities', 'spNgModule', 'sarsha.spinner',
             'angular-growl', 'sp-peoplepicker', 'datatables', 'services.contracts', 'services.costcenters', 'services.departments', 'services.currencies', 'services.doctypes', 'services.contract-suppliers',
-            'services.contract-documents', 'services.settings', 'services.contract-renewals','dir.adminmenu', 'dir.backbtn', 'dir.addbtn', 'dir.contractdetails', 'dir.adddocument', 'dir.addsupplier', 'departments', 'costcenters',
+            'services.contract-documents', 'services.settings', 'services.contract-renewals', 'dir.adminmenu', 'dir.backbtn', 'dir.addbtn', 'dir.contractdetails', 'dir.adddocument', 'dir.addsupplier', 'departments', 'costcenters',
             'doctypes', 'currencies', 'settings', 'contracts', 'contractsAdd'])
         .constant("IS_APP_WEB", false)
         .config(['growlProvider', GrowlProvider])

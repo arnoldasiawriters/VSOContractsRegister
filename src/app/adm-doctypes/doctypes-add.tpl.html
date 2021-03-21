@@ -40,6 +40,16 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label class="control-label">Agreement Type:</label>
+                                    <div class="btn-group">
+                                        <label class="btn btn-success" ng-model="ctrl.agreementtype.contract" uib-btn-checkbox>Contract</label>
+                                        <label class="btn btn-success" ng-model="ctrl.agreementtype.frameworkagreement" uib-btn-checkbox>Framework Agreement</label>
+                                        <label class="btn btn-success" ng-model="ctrl.agreementtype.propertylease" uib-btn-checkbox>Property Lease</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label class="control-label">Order By:</label>
                                     <input class="form-control"
                                            type="number"

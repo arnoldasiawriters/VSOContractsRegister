@@ -23,6 +23,7 @@
                                 <tr>
                                     <th>Country Office/Global Team:</th>
                                     <th>Department Manager/s</th>
+                                    <th>OrderBy</th>
                                     <!--<th style="min-width: 150px"></th>-->
                                 </tr>
                                 <tr dir-paginate="department in ctrl.departments | itemsPerPage: 10">
@@ -32,20 +33,21 @@
                                             {{dept.title}}<font ng-show="!$last">,</font>
                                         </span>
                                     </td>
+                                    <td><span>{{department.orderby}}</span></td>
                                     <!--<td>
-                            <div class="dropdown">
-                                <button class="btn btn-xs btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Action
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#editAdminDepartment/{{department.id}}">Edit</a>
-                                        <a href="#listAdminDepartments" ng-click="ctrl.DeleteRecord(department.id)">Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>-->
+                                        <div class="dropdown">
+                                            <button class="btn btn-xs btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
+                                                Action
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#editAdminDepartment/{{department.id}}">Edit</a>
+                                                    <a href="#listAdminDepartments" ng-click="ctrl.DeleteRecord(department.id)">Delete</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>-->
                                 </tr>
                             </tbody>
                         </table>

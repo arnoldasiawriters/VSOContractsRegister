@@ -227,6 +227,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Link to Procurement Documents:</label>
+                                    <span>
+                                        (link to the procurement file on the relevant Country Office/ Global Team SharePoint team site)
+                                    </span>
+                                    <input class="form-control"
+                                           type="text"
+                                           ng-model="ctrl.contract.procdocslink"
+                                           ng-if="ctrl.action != 'details'">
+                                    <span ng-if="ctrl.action == 'details'">
+                                        <a class="form-control" target="_blank" ng-href="{{ctrl.contract.procdocslink}}">{{ctrl.contract.procdocslink}}</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row" ng-if="ctrl.action == 'renew'">
                             <div class="col-md-9">
 
@@ -345,6 +362,7 @@
                                             <th style="min-width:200px;">Supplier Physical Address</th>
                                             <th style="min-width:200px;">Supplier Email & Phone</th>
                                             <th style="min-width:200px;">Supplier Website</th>
+                                            <th style="min-width:200px;">Salesforce Id</th>
                                             <th style="width:110px">Action</th>
                                         </tr>
                                         <tr ng-if="ctrl.action != 'add'">
@@ -353,6 +371,7 @@
                                             <th style="min-width:200px;">Supplier Physical Address</th>
                                             <th style="min-width:200px;">Supplier Email & Phone</th>
                                             <th style="min-width:200px;">Supplier Website</th>
+                                            <th style="min-width:200px;">Salesforce Id</th>
                                             <th style="min-width:120px;">Upload By</th>
                                             <th style="min-width:120px;">Upload Date</th>
                                         </tr>
@@ -364,6 +383,7 @@
                                             <td><span>{{supplier.address}}</span></td>
                                             <td><span>{{supplier.emailphone}}</span></td>
                                             <td><span>{{supplier.website}}</span></td>
+                                            <td><span>{{supplier.salesforceid}}</span></td>
                                             <td><a href="" class="btn btn-xs btn-danger" ng-click="ctrl.RemoveSupplier(supplier)" ng-if="ctrl.action != 'details'">Remove</a></td>
                                         </tr>
 
@@ -373,6 +393,7 @@
                                             <td><span>{{supplier.address}}</span></td>
                                             <td><span>{{supplier.emailphone}}</span></td>
                                             <td><span><a target="_blank" ng-href="{{supplier.website}}">{{supplier.website}}</a></span></td>
+                                            <td><span>{{supplier.salesforceid}}</span></td>
                                             <td><span>{{supplier.uploadby.title}}</span></td>
                                             <td><span>{{supplier.uploaddate | date: 'dd/MM/yyyy HH:mm:ss' : 'europe/london'}}</span></td>
                                         </tr>
